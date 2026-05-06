@@ -21,10 +21,11 @@ foreach ( ['db','helpers','shortcode','ajax','admin-menu','admin-quotes','admin-
 }
 
 /* ── Activation ────────────────────────────────────────── */
-register_activation_hook( __FILE__, function() {
+register_activation_hook( __FILE__, 'pcbq_run_setup' );
+
+function pcbq_run_setup() {
     pcbq_create_tables();
     pcbq_seed_defaults();
-    // Secure upload folder
     $up  = wp_upload_dir();
     $dir = $up['basedir'] . '/pcb-gerber-files';
     if ( ! file_exists( $dir ) ) {
@@ -32,7 +33,15 @@ register_activation_hook( __FILE__, function() {
         file_put_contents( $dir . '/.htaccess', "Options -Indexes\ndeny from all\n" );
         file_put_contents( $dir . '/index.php', '<?php // silence' );
     }
-});
+    update_option( 'pcbq_db_version', PCBQ_VERSION );
+}
+
+/* ── Auto-create tables if missing (e.g. after manual zip upload) ── */
+add_action( 'plugins_loaded', function() {
+    if ( get_option( 'pcbq_db_version' ) !== PCBQ_VERSION ) {
+        pcbq_run_setup();
+    }
+} );
 
 /* ── Assets: Frontend ──────────────────────────────────── */
 add_action( 'wp_enqueue_scripts', function() {
