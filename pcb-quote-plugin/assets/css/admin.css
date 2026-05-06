@@ -1,0 +1,215 @@
+/* PCB Quote Manager Pro — Admin Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --pa-blue:   #0f4c81;
+  --pa-teal:   #00b5a3;
+  --pa-navy:   #1a2e4a;
+  --pa-border: #e2e8f0;
+  --pa-light:  #f8fafc;
+  --pa-white:  #ffffff;
+  --pa-muted:  #64748b;
+  --pa-text:   #1e293b;
+  --pa-error:  #ef4444;
+  --pa-ok:     #10b981;
+  --pa-font:   'Inter', -apple-system, sans-serif;
+}
+
+.pcbq-wrap { font-family: var(--pa-font) !important; max-width: 1400px; }
+.pcbq-wrap * { box-sizing: border-box; }
+
+/* Header */
+.pcbq-header {
+  background: linear-gradient(135deg, var(--pa-navy) 0%, #0f3060 100%);
+  color: #fff; border-radius: 12px;
+  padding: 22px 28px; margin-bottom: 22px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+}
+.pcbq-title { color: #fff !important; font-size: 20px !important; font-weight: 800 !important; margin:0 !important; padding:0 !important; border:none !important; }
+.pcbq-subtitle { color: rgba(255,255,255,.65); font-size: 13px; margin:4px 0 0; }
+
+/* Cards */
+.pcbq-card {
+  background: var(--pa-white);
+  border: 1px solid var(--pa-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+.pcbq-card-head {
+  font-size: 13px; font-weight: 700; color: var(--pa-navy);
+  text-transform: uppercase; letter-spacing: .05em;
+  margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--pa-border);
+}
+.pcbq-table-card { padding: 0; overflow: hidden; }
+
+/* Stats */
+.pcbq-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.pcbq-stat-card {
+  background: var(--pa-white); border: 1px solid var(--pa-border); border-radius: 10px;
+  padding: 14px 20px; display: flex; flex-direction: column; gap: 4px; min-width: 100px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+.pcbq-stat-n { font-size: 24px; font-weight: 800; color: var(--pa-text); line-height: 1; }
+.pcbq-stat-l { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--pa-muted); font-weight: 600; }
+
+/* Filters */
+.pcbq-filters { background: var(--pa-white); border:1px solid var(--pa-border); border-radius:10px; padding:14px 18px; margin-bottom:14px; }
+.pcbq-filter-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.pcbq-search { padding:8px 12px; border:1px solid var(--pa-border); border-radius:6px; font-family:var(--pa-font); min-width:200px; }
+.pcbq-select { padding:8px 10px; border:1px solid var(--pa-border); border-radius:6px; font-family:var(--pa-font); }
+
+/* Buttons */
+.pcbq-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:8px 16px; border-radius:6px;
+  font-family:var(--pa-font); font-size:13px; font-weight:600;
+  cursor:pointer; text-decoration:none; border:1.5px solid transparent; transition:all .15s;
+}
+.pcbq-btn-teal   { background:var(--pa-teal); color:#fff; border-color:var(--pa-teal); }
+.pcbq-btn-teal:hover { background:#009688; color:#fff; }
+.pcbq-btn-ghost  { background:var(--pa-light); color:var(--pa-text); border-color:var(--pa-border); }
+.pcbq-btn-ghost:hover { background:var(--pa-border); color:var(--pa-text); }
+.pcbq-btn-danger { background:#fff; color:var(--pa-error); border-color:#fecaca; }
+.pcbq-btn-danger:hover { background:#fef2f2; }
+.pcbq-btn-sm  { padding:4px 10px; font-size:12px; }
+.pcbq-btn-lg  { padding:11px 22px; font-size:14px; }
+.pcbq-btn-full{ width:100%; justify-content:center; margin-top:8px; }
+
+/* Table */
+.pcbq-table { width:100%; border-collapse:collapse; font-size:13px; }
+.pcbq-table thead tr { background:var(--pa-light); border-bottom:2px solid var(--pa-border); }
+.pcbq-table th { padding:11px 14px; text-align:left; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--pa-muted); white-space:nowrap; }
+.pcbq-table tbody tr { border-bottom:1px solid var(--pa-border); transition:background .1s; }
+.pcbq-table tbody tr:hover { background:var(--pa-light); }
+.pcbq-table td { padding:10px 14px; vertical-align:middle; }
+.pcbq-id { font-weight:800; color:var(--pa-blue); font-size:13px; }
+.pcbq-cname  { font-weight:700; color:var(--pa-text); }
+.pcbq-cemail { font-size:12px; color:var(--pa-muted); margin-top:2px; }
+.pcbq-cco    { font-size:11px; color:#94a3b8; font-style:italic; }
+.pcbq-chip   { display:inline-block; background:var(--pa-light); border:1px solid var(--pa-border); border-radius:4px; padding:2px 7px; font-size:11px; font-weight:600; margin:1px; }
+.pcbq-file-link { color:var(--pa-teal); font-weight:600; text-decoration:none; }
+.pcbq-file-link:hover { text-decoration:underline; }
+.pcbq-na { color:#94a3b8; font-size:12px; }
+.pcbq-empty { text-align:center; padding:48px !important; color:#94a3b8; font-size:15px; }
+.pcbq-actions { display:flex; gap:5px; }
+.pcbq-status-sel { padding:4px 8px; border-radius:5px; font-family:var(--pa-font); font-size:12px; font-weight:600; border:1px solid var(--pa-border); cursor:pointer; }
+
+/* Detail Grid */
+.pcbq-detail-grid { display:grid; grid-template-columns:1fr 340px; gap:16px; align-items:start; }
+@media(max-width:960px){ .pcbq-detail-grid { grid-template-columns:1fr; } }
+.pcbq-detail-left .pcbq-card { margin-bottom:14px; }
+.pcbq-info-tbl { width:100%; border-collapse:collapse; font-size:13px; }
+.pcbq-info-tbl tr { border-bottom:1px solid #f1f5f9; }
+.pcbq-info-tbl tr:last-child { border:none; }
+.pcbq-info-tbl th { padding:7px 12px 7px 0; font-weight:600; color:var(--pa-muted); text-align:left; width:40%; font-size:12px; }
+.pcbq-info-tbl td { padding:7px 0; color:var(--pa-text); font-weight:500; }
+.pcbq-info-tbl td a { color:var(--pa-blue); text-decoration:none; }
+
+/* Alert badges */
+.pcbq-alert { border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:12px; }
+.pcbq-alert-ok  { background:#d1fae5; color:#065f46; border:1px solid #a7f3d0; }
+.pcbq-alert-err { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+
+/* Quote panel */
+.pcbq-quote-panel { border:2px solid var(--pa-teal) !important; position:sticky; top:24px; }
+.pcbq-lbl { display:block; font-size:11px; font-weight:700; color:var(--pa-muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px; }
+.pcbq-input {
+  width:100%; padding:10px 12px;
+  border:1.5px solid var(--pa-border); border-radius:6px;
+  font-family:var(--pa-font); font-size:14px; font-weight:600;
+  transition:border-color .15s;
+}
+.pcbq-input:focus { outline:none; border-color:var(--pa-teal); }
+.pcbq-textarea {
+  width:100%; padding:10px 12px; margin-top:5px;
+  border:1.5px solid var(--pa-border); border-radius:6px;
+  font-family:var(--pa-font); font-size:13px; resize:vertical;
+}
+.pcbq-textarea:focus { outline:none; border-color:var(--pa-teal); }
+
+/* Field Manager */
+.pcbq-fields-legend {
+  display:flex; gap:20px; flex-wrap:wrap;
+  padding:10px 16px; background:var(--pa-light);
+  border-radius:8px; margin-bottom:18px;
+  font-size:12px; color:var(--pa-muted);
+}
+.pcbq-fields-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap:12px; }
+.pcbq-field-row {
+  border:1.5px solid var(--pa-border); border-radius:8px;
+  overflow:hidden; transition:border-color .2s, opacity .2s;
+}
+.pcbq-field-row.pcbq-enabled  { border-color:var(--pa-teal); }
+.pcbq-field-row.pcbq-disabled { opacity:.55; }
+
+.pcbq-field-row-top {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 14px; background:var(--pa-light);
+  border-bottom:1px solid var(--pa-border);
+}
+.pcbq-enabled .pcbq-field-row-top { background:#f0fdfb; }
+.pcbq-field-key { font-size:10px; color:var(--pa-muted); font-weight:600; text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:3px; }
+.pcbq-field-info { flex:1; }
+.pcbq-label-input {
+  width:100%; padding:4px 8px;
+  border:1px solid var(--pa-border); border-radius:4px;
+  font-family:var(--pa-font); font-size:13px; font-weight:600;
+  background:var(--pa-white);
+}
+.pcbq-label-input:focus { outline:none; border-color:var(--pa-teal); }
+.pcbq-field-opts { padding:10px 14px; }
+.pcbq-opts-label { font-size:11px; color:var(--pa-muted); font-weight:600; display:block; margin-bottom:4px; }
+.pcbq-opts-textarea {
+  width:100%; padding:6px 8px;
+  border:1px solid var(--pa-border); border-radius:4px;
+  font-family:monospace; font-size:12px; resize:vertical;
+}
+.pcbq-no-opts { font-size:12px; color:#94a3b8; font-style:italic; }
+
+/* Toggle switch */
+.pcbq-toggle { position:relative; display:inline-block; width:40px; height:22px; flex-shrink:0; }
+.pcbq-toggle input { opacity:0; width:0; height:0; }
+.pcbq-toggle-slider {
+  position:absolute; cursor:pointer; inset:0;
+  background:#cbd5e1; border-radius:22px; transition:.2s;
+}
+.pcbq-toggle-slider::before {
+  content:''; position:absolute;
+  width:16px; height:16px; left:3px; bottom:3px;
+  background:#fff; border-radius:50%; transition:.2s;
+}
+input:checked + .pcbq-toggle-slider { background:var(--pa-teal); }
+input:checked + .pcbq-toggle-slider::before { transform:translateX(18px); }
+
+/* Email Editor */
+.pcbq-email-tabs { display:flex; gap:4px; margin-bottom:18px; flex-wrap:wrap; }
+.pcbq-email-tab {
+  padding:10px 20px; border-radius:8px;
+  font-family:var(--pa-font); font-size:14px; font-weight:600;
+  text-decoration:none; color:var(--pa-muted);
+  border:1.5px solid var(--pa-border); background:var(--pa-white);
+  transition:all .15s;
+}
+.pcbq-email-tab:hover { border-color:var(--pa-teal); color:var(--pa-teal); }
+.pcbq-email-tab.active { background:var(--pa-teal); border-color:var(--pa-teal); color:#fff; }
+
+.pcbq-email-layout { display:grid; grid-template-columns:1fr 300px; gap:16px; align-items:start; }
+@media(max-width:900px){ .pcbq-email-layout { grid-template-columns:1fr; } }
+.pcbq-email-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+
+.pcbq-placeholders { display:flex; flex-direction:column; gap:6px; }
+.pcbq-placeholder {
+  padding:8px 10px;
+  background:var(--pa-light); border-radius:6px;
+  cursor:pointer; border:1px solid var(--pa-border);
+  transition:all .15s;
+}
+.pcbq-placeholder:hover { background:#f0fdfb; border-color:var(--pa-teal); }
+.pcbq-ph-code { font-size:11px; display:block; background:#e2e8f0; padding:2px 5px; border-radius:3px; margin-bottom:3px; transition:all .2s; }
+.pcbq-ph-desc { font-size:11px; color:var(--pa-muted); }
+
+/* Settings */
+.pcbq-settings-grid { display:flex; flex-direction:column; gap:16px; margin-bottom:20px; }
+.pcbq-field-group label.pcbq-lbl { margin-bottom:6px; }
