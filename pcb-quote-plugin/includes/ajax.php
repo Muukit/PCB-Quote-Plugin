@@ -70,7 +70,10 @@ function pcbq_ajax_submit() {
         'gerber_file'    => $gerber,
     ]);
 
-    if ( ! $ok ) wp_send_json_error(['msg' => 'Database error. Please try again.']);
+    if ( ! $ok ) {
+        error_log( 'PCBQ DB error: ' . $wpdb->last_error );
+        wp_send_json_error(['msg' => 'Database error. Please try again.']);
+    }
 
     pcbq_send_admin_notification( $wpdb->insert_id );
     wp_send_json_success(['msg' => 'Your PCB quote request has been submitted! We will review your files and send you a price shortly.']);

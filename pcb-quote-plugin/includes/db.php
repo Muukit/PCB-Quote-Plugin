@@ -4,67 +4,61 @@ if ( ! defined('ABSPATH') ) exit;
 function pcbq_create_tables() {
     global $wpdb;
     $c = $wpdb->get_charset_collate();
-    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
-    // Main quotes table
-    dbDelta("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}pcb_quotes (
-        id              BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        submitted_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        status          VARCHAR(30)  NOT NULL DEFAULT 'pending',
-
-        client_name     VARCHAR(150) NOT NULL,
-        client_email    VARCHAR(150) NOT NULL,
-        client_phone    VARCHAR(60)  DEFAULT '',
-        client_company  VARCHAR(150) DEFAULT '',
-
-        product_type    VARCHAR(60)  DEFAULT 'Standard PCB/PCBA',
-        base_material   VARCHAR(60)  DEFAULT 'FR-4',
-        layers          TINYINT      DEFAULT 2,
-        dim_width       DECIMAL(10,2) DEFAULT 100,
-        dim_height      DECIMAL(10,2) DEFAULT 100,
-        quantity        INT          DEFAULT 5,
-        product_use     VARCHAR(60)  DEFAULT 'Industrial/Consumer',
-
-        different_design TINYINT     DEFAULT 1,
-        delivery_format  VARCHAR(40) DEFAULT 'Single PCB',
-        pcb_thickness    VARCHAR(10) DEFAULT '1.6mm',
-        pcb_color        VARCHAR(30) DEFAULT 'Green',
-        silkscreen       VARCHAR(30) DEFAULT 'White',
-        material_type    VARCHAR(40) DEFAULT 'FR4 TG135',
-        surface_finish   VARCHAR(40) DEFAULT 'HASL(with lead)',
-
-        outer_copper     VARCHAR(10) DEFAULT '1 oz',
-        via_covering     VARCHAR(40) DEFAULT 'Tented',
-        via_plating      VARCHAR(60) DEFAULT 'Not Specified',
-        min_via_hole     VARCHAR(40) DEFAULT '0.3mm/(0.4/0.45mm)',
-        board_tolerance  VARCHAR(30) DEFAULT '±0.2mm(Regular)',
-        confirm_file     VARCHAR(5)  DEFAULT 'No',
-        mark_on_pcb      VARCHAR(60) DEFAULT 'Remove Mark',
-        electrical_test  VARCHAR(40) DEFAULT 'Flying Probe Fully Test',
-        gold_fingers     VARCHAR(5)  DEFAULT 'No',
-        castellated      VARCHAR(5)  DEFAULT 'No',
-        edge_plating     VARCHAR(5)  DEFAULT 'No',
-        blind_slots      VARCHAR(5)  DEFAULT 'No',
-        ul_marking       VARCHAR(30) DEFAULT 'No',
-        humidity_card    VARCHAR(5)  DEFAULT 'No',
-
-        gerber_file      VARCHAR(500) DEFAULT '',
+    $wpdb->query( "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}pcb_quotes (
+        id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+        submitted_at     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        status           VARCHAR(30) NOT NULL DEFAULT 'pending',
+        client_name      VARCHAR(150) NOT NULL DEFAULT '',
+        client_email     VARCHAR(150) NOT NULL DEFAULT '',
+        client_phone     VARCHAR(60) NOT NULL DEFAULT '',
+        client_company   VARCHAR(150) NOT NULL DEFAULT '',
+        product_type     VARCHAR(60) NOT NULL DEFAULT 'Standard PCB/PCBA',
+        base_material    VARCHAR(60) NOT NULL DEFAULT 'FR-4',
+        layers           TINYINT NOT NULL DEFAULT 2,
+        dim_width        DECIMAL(10,2) NOT NULL DEFAULT 100,
+        dim_height       DECIMAL(10,2) NOT NULL DEFAULT 100,
+        quantity         INT NOT NULL DEFAULT 5,
+        product_use      VARCHAR(60) NOT NULL DEFAULT '',
+        different_design TINYINT NOT NULL DEFAULT 1,
+        delivery_format  VARCHAR(40) NOT NULL DEFAULT 'Single PCB',
+        pcb_thickness    VARCHAR(10) NOT NULL DEFAULT '1.6mm',
+        pcb_color        VARCHAR(30) NOT NULL DEFAULT 'Green',
+        silkscreen       VARCHAR(30) NOT NULL DEFAULT 'White',
+        material_type    VARCHAR(40) NOT NULL DEFAULT '',
+        surface_finish   VARCHAR(40) NOT NULL DEFAULT '',
+        outer_copper     VARCHAR(10) NOT NULL DEFAULT '',
+        via_covering     VARCHAR(40) NOT NULL DEFAULT '',
+        via_plating      VARCHAR(60) NOT NULL DEFAULT '',
+        min_via_hole     VARCHAR(40) NOT NULL DEFAULT '',
+        board_tolerance  VARCHAR(30) NOT NULL DEFAULT '',
+        confirm_file     VARCHAR(5)  NOT NULL DEFAULT 'No',
+        mark_on_pcb      VARCHAR(60) NOT NULL DEFAULT '',
+        electrical_test  VARCHAR(40) NOT NULL DEFAULT '',
+        gold_fingers     VARCHAR(5)  NOT NULL DEFAULT 'No',
+        castellated      VARCHAR(5)  NOT NULL DEFAULT 'No',
+        edge_plating     VARCHAR(5)  NOT NULL DEFAULT 'No',
+        blind_slots      VARCHAR(5)  NOT NULL DEFAULT 'No',
+        ul_marking       VARCHAR(30) NOT NULL DEFAULT 'No',
+        humidity_card    VARCHAR(5)  NOT NULL DEFAULT 'No',
+        gerber_file      VARCHAR(500) NOT NULL DEFAULT '',
         special_notes    TEXT,
-
         quoted_price     DECIMAL(12,2) DEFAULT NULL,
         admin_notes      TEXT,
-        quote_sent_at    DATETIME DEFAULT NULL
-    ) {$c};");
+        quote_sent_at    DATETIME DEFAULT NULL,
+        PRIMARY KEY (id)
+    ) {$c}" );
 
-    // Field config table – controls what shows on the frontend
-    dbDelta("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}pcb_field_config (
-        id          BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        field_key   VARCHAR(80) NOT NULL UNIQUE,
-        label       VARCHAR(150) NOT NULL,
-        enabled     TINYINT(1) NOT NULL DEFAULT 1,
+    $wpdb->query( "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}pcb_field_config (
+        id           BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+        field_key    VARCHAR(80) NOT NULL DEFAULT '',
+        label        VARCHAR(150) NOT NULL DEFAULT '',
+        enabled      TINYINT(1) NOT NULL DEFAULT 1,
         options_json TEXT,
-        sort_order  SMALLINT DEFAULT 0
-    ) {$c};");
+        sort_order   SMALLINT NOT NULL DEFAULT 0,
+        PRIMARY KEY (id),
+        UNIQUE KEY field_key (field_key)
+    ) {$c}" );
 }
 
 /* ─── Seed default field configuration ────────────────── */

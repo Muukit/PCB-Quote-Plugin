@@ -2,7 +2,7 @@
 /**
  * Plugin Name: PCB Quote Manager Pro
  * Description: Professional PCB quote request system with admin field control, email template editor, and product categories.
- * Version:     2.0.0
+ * Version:     2.0.1
  * Author:      PCB Quote Manager
  * License:     GPL-2.0+
  * Text Domain: pcbq
@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PCBQ_VERSION',    '2.0.0' );
+define( 'PCBQ_VERSION',    '2.0.1' );
 define( 'PCBQ_DIR',        plugin_dir_path( __FILE__ ) );
 define( 'PCBQ_URL',        plugin_dir_url(  __FILE__ ) );
 define( 'PCBQ_TABLE',      'pcb_quotes' );
